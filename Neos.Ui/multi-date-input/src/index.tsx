@@ -1,0 +1,73 @@
+import { DateInput } from '@neos-project/react-ui-components';
+import { useI18n } from '@devclaim/neos-ui-editors-neos-bridge';
+import React, { useState, useEffect } from 'react';
+import { AddButton } from './components/addButton';
+import { Container } from './components/container';
+
+type MultiDateInputProps = {
+	value?: (Date | null)[];
+	onChange?: (dates: (Date | null)[]) => void;
+	initialDate?: Date;
+	/** the label of the add button, after a "+" */
+	addLabel?: string;
+};
+
+
+export const MultiDateInput = ({ value, onChange, initialDate, addLabel }: MultiDateInputProps) => {
+	const [dates, setDates] = useState<(Date | null)[]>(value ?? [])
+	const [addingNewIndex, setAddingNewIndex] = useState<number | null>(null);
+	const i18n = useI18n();
+
+	useEffect(() => {
+		setDates(value ?? []);
+	}, [value]);
+
+	const handleChange = (index: number) => (date: Date | null) => {
+		if (!date) {
+			const updated = dates.filter((_, i) => i !== index);
+			setDates(updated);
+			onChange?.(updated);
+			return;
+		}
+
+		const updated = [...dates];
+		updated[index] = date;
+		setDates(updated);
+		onChange?.(updated);
+
+		if (index === addingNewIndex) {
+			setAddingNewIndex(null);
+		}
+	};
+
+	const handleAddNew = () => {
+		const updated = [...dates, initialDate ?? new Date()];
+		setDates(updated);
+		setAddingNewIndex(dates.length);
+		onChange?.(updated);
+	};
+
+	return (
+		<Container>
+			{dates.map((date, index) => (
+				<div key={index}>
+					<DateInput
+						timeConstraints={{ minutes: { step: 1 } }}
+						value={date ?? undefined}
+						onChange={handleChange(index)}
+						is24Hour
+						labelFormat="DD. MMM YYYY, HH:mm"
+						placeholder={i18n('Devclaim.NeosUiEditors:OccurrenceEditor:inspector.selectDate')}
+					/>
+				</div>
+			))}
+
+			<AddButton
+				type="button"
+				onClick={handleAddNew}
+			>
+				+ {addLabel ?? i18n('Devclaim.NeosUiEditors:OccurrenceEditor:inspector.addDate')}
+			</AddButton>
+		</Container>
+	);
+};

@@ -1,0 +1,12 @@
+**/node_modules/**
+node_modules
+**/lib/
+.yarn
+
+composer.lock
+Packages
+vendor
+bin
+Build
+
+.DS_Store

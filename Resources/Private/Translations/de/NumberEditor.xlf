@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file original="NumberEditor" product-name="Devclaim.NeosUiEditors" source-language="en" datatype="plaintext" target-language="de">
+        <body>
+            <trans-unit id="decrease" xml:space="preserve">
+                <source>Decrease</source>
+                <target state="translated">Weniger</target>
+            </trans-unit>
+            <trans-unit id="increase" xml:space="preserve">
+                <source>Increase</source>
+                <target state="translated">Mehr</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

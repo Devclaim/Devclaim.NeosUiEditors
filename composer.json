@@ -1,0 +1,14 @@
+{
+	"name": "devclaim/neos-ui-editors",
+	"type": "neos-package",
+	"description": "Inspector editors for the Neos UI: dates with repetition (RRULE), whole numbers and colors",
+	"license": "GPL-3.0-or-later",
+	"require": {
+		"neos/neos-ui": "^9.0"
+	},
+	"extra": {
+		"neos": {
+			"package-key": "Devclaim.NeosUiEditors"
+		}
+	}
+}

@@ -1,0 +1,11 @@
+Neos:
+  Neos:
+    Ui:
+      resources:
+        javascript:
+          'Devclaim.NeosUiEditors:Editors':
+            resource: 'resource://Devclaim.NeosUiEditors/Public/JavaScript/Plugin.js'
+    userInterface:
+      translation:
+        autoInclude:
+          'Devclaim.NeosUiEditors': ['*']
